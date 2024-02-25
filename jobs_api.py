@@ -42,7 +42,7 @@ async def obter_vagas(query, page, num_pages, date_posted, remote_only, employme
 
                 shortened_url = encurtar_url(job_providers)
 
-                default_image = 'https://img.freepik.com/fotos-gratis/fundo-de-fotografia-de-cabra-selvagem_1409-4243.jpg?w=740&t=st=1708820800~exp=1708821400~hmac=cc844bd148573ec8fe64eb2e3e708bc53ce1194024b7ca47b7ad6d0cc4c585ef'
+                default_image = 'https://tse2.mm.bing.net/th/id/OIG1.w4HtNwd2AlWUDd5AbOaV?pid=ImgGn'
                 date_posted = datetime.strptime(date_posted, "%Y-%m-%dT%H:%M:%S.%fZ").strftime("%d/%m/%Y")
 
                 logo_url = job.get('employer_logo')

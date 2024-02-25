@@ -1,10 +1,17 @@
+import random
+import os
+from dotenv import load_dotenv
 import hikari
 import lightbulb
 from jobs_api import obter_vagas
-import random
+
+load_dotenv()
+
+discord_token = os.getenv("DISCORD_TOKEN")
+
 
 bot = lightbulb.BotApp(
-    token="SEU_BOT_TOKEN_ID_AQUI",
+    token= discord_token,
     default_enabled_guilds=(1149771085085155509),
     intents=hikari.Intents.ALL,
     prefix="!"
