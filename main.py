@@ -1,31 +1,36 @@
-import discord
-from discord.ext import commands
-from bot_log import setup_discord_bot
-from discord import Message
-import hikari 
+import hikari
+import lightbulb
+from jobs_api import obter_vagas
+import random
 
-intents = discord.Intents.default()
-intents.typing = False
-intents.presences = False
-intents.message_content = True
+bot = lightbulb.BotApp(
+    token="MTIwODg3NzE1NjcxODA5MjMzMA.GIWURr.k9Eta2I-gA_77qU-yaf23UnPhRJ8vlqaDHP8sA",
+    default_enabled_guilds=(1149771085085155509),
+    intents=hikari.Intents.ALL,
+    prefix="!"
+)
 
-client = hikari.GatewayBot('MTIwNzgxNTExMDg2MTc4NzE5Ng.GVvJTe.SKw9lySHu_T8KCyQr4exmOvKa8Dh81eDlKZdEM')
-client = discord.Client( intents=intents)
-client = commands.Bot(command_prefix='!', intents=intents)
+@bot.command
+@lightbulb.command("jobs", "Gera e mostra vagas.")
+@lightbulb.implements(lightbulb.PrefixCommand)
+async def jobs(ctx: lightbulb.Context) -> None:
 
+    job = ctx.event.message.content[len("!jobs ")::].strip()
 
-@client.event
-async def on_ready():
-    print(f'We have logged in as {client.user}')
+    query = f'{job} no Brasil'
+    page = random.randint(1, 3)
+    num_pages = random.randint(1, 3)
+    date_posted = 'month'
+    remote_only = 'True'
+    employment_types = 'fulltime, parttime, intern, contractor'
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
+    embeds = await obter_vagas(query, page, num_pages, date_posted, remote_only, employment_types)
 
-    if message.content.startswith('$hello'):
-        await message.channel.send(f'{message.author} é viado')
+    if embeds:
+        for embed in embeds:
+            await ctx.respond(embed=embed)
+    else:
+        await ctx.respond("Erro ao obter informações de vagas.")
 
-client.run('MTIwNzgxNTExMDg2MTc4NzE5Ng.GVvJTe.SKw9lySHu_T8KCyQr4exmOvKa8Dh81eDlKZdEM')
-
-setup_discord_bot()
+if __name__ == "__main__":
+    bot.run()
