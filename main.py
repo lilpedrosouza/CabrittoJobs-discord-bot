@@ -24,7 +24,7 @@ async def jobs(ctx: lightbulb.Context) -> None:
 
     job = ctx.event.message.content[len("!jobs ")::].strip()
 
-    query = f'{job} no Brasil'
+    query = f'{job} Desenvolvedor no Brasil'
     page = random.randint(1, 3)
     num_pages = random.randint(1, 3)
     date_posted = 'month'

@@ -1,8 +1,14 @@
 import hikari
 import pyshorteners
+from dotenv import load_dotenv
+import os
 import httpx
 import random
 from datetime import datetime
+
+load_dotenv()
+
+api_key = os.getenv("API_KEY")
 
 def encurtar_url(url):
     s = pyshorteners.Shortener()
@@ -21,7 +27,7 @@ async def obter_vagas(query, page, num_pages, date_posted, remote_only, employme
     }
 
     headers = {
-        "X-RapidAPI-Key": "95b7974ce1mshb308fb3833585d2p1692a6jsn757ee76f8c98",
+        "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "jsearch.p.rapidapi.com"
     }
 
