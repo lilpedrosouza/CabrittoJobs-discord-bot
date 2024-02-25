@@ -4,7 +4,7 @@ from jobs_api import obter_vagas
 import random
 
 bot = lightbulb.BotApp(
-    token="MTIwODg3NzE1NjcxODA5MjMzMA.GIWURr.k9Eta2I-gA_77qU-yaf23UnPhRJ8vlqaDHP8sA",
+    token="SEU_BOT_TOKEN_ID_AQUI",
     default_enabled_guilds=(1149771085085155509),
     intents=hikari.Intents.ALL,
     prefix="!"
