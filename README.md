@@ -20,4 +20,4 @@ Um bot do Discord que envia vagas na área de tecnologia através de comandos. O
 # Comandos
 Com o bot configurado basta digitar ```!jobs (o nome da vaga que deseja)``` no chat do discord sem os parenteses, que ira aparecer um conjunto de vagas.
 > [!NOTE]
-> O bot ainda esta na sua primeira versão, novas features ainda serão adcionadas em breve para otimização e novas funcionalidades.
+> O bot ainda está na sua primeira versão, novas features ainda serão adicionadas em breve para otimização e novas funcionalidades.
