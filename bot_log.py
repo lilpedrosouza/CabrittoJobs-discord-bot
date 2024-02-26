@@ -28,7 +28,5 @@ def setup_discord_bot():
     handler.setFormatter(formatter)
     logger.addHandler(handler)
 
-    # Assume client refers to a discord.Client subclass...
-    # Suppress the default configuration since we have our own
-    client.run('MTIwNzgxNTExMDg2MTc4NzE5Ng.GVvJTe.SKw9lySHu_T8KCyQr4exmOvKa8Dh81eDlKZdEM', log_handler=None)
+    
 
