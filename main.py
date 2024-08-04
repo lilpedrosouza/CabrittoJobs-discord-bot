@@ -34,8 +34,8 @@ async def buscar_vagas(interaction: discord.Interaction, tipo_vaga: str, job: st
     await interaction.response.defer()  # Defer a interação para indicar que estamos processando
 
     query = f'{tipo_vaga} {job} no Brasil'
-    page = random.randint(1, 3)
-    num_pages = random.randint(1, 3)
+    page = random.randint(1, 2)
+    num_pages = random.randint(1, 2)
     date_posted = 'month'
     remote_only = 'True'
     employment_types = 'fulltime, parttime, intern, contractor'
