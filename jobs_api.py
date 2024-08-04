@@ -10,9 +10,11 @@ from datetime import datetime
 load_dotenv()
 api_key = os.getenv("API_KEY")
 
+
 def encurtar_url(url):
     s = pyshorteners.Shortener()
     return s.tinyurl.short(url)
+
 
 async def obter_vagas(query, page, num_pages, date_posted, remote_only, employment_types):
     api_url = "https://jsearch.p.rapidapi.com/search"
@@ -58,7 +60,8 @@ async def obter_vagas(query, page, num_pages, date_posted, remote_only, employme
             embed.set_thumbnail(url=logo_url)
             embed.add_field(name="Local:", value=location, inline=True)
             embed.add_field(name="Empresa:", value=company, inline=False)
-            embed.add_field(name="Link da vaga:", value=f"[Clique aqui para se candidatar!]({shortened_url})", inline=True)
+            embed.add_field(name="Link da vaga:", value=f"[Clique aqui para se candidatar!]({shortened_url})",
+                            inline=True)
             embed.add_field(name="Data da publicação:", value=date_posted, inline=True)
             embed.set_footer(text=f"Job Provider: {job.get('job_publisher', '')}")
             embeds.append(embed)
