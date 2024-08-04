@@ -30,13 +30,10 @@ class MyBot(commands.Bot):
 bot = MyBot()
 
 
-# Definir o comando de barra
-@app_commands.command(name="jobs", description="Procura por vagas de desenvolvedor no Brasil.")
-@app_commands.describe(job="Especifique o tipo de desenvolvedor (ex: Python, JavaScript)")
-async def jobs(interaction: discord.Interaction, job: str) -> None:
+async def buscar_vagas(interaction: discord.Interaction, tipo_vaga: str, job: str) -> None:
     await interaction.response.defer()  # Defer a interação para indicar que estamos processando
 
-    query = f'Desenvolvedor {job} no Brasil'
+    query = f'{tipo_vaga} {job} no Brasil'
     page = random.randint(1, 3)
     num_pages = random.randint(1, 3)
     date_posted = 'month'
@@ -55,28 +52,18 @@ async def jobs(interaction: discord.Interaction, job: str) -> None:
         await interaction.followup.send(f"Ocorreu um erro ao obter as vagas: {e}")
 
 
-@app_commands.command(name="estágio", description="Procura por vagas de estágio no Brasil.")
-@app_commands.describe(estagio="Especifique o tipo de estágio (ex: Python, JavaScript)")
-async def estagio(interaction: discord.Interaction, estagio: str) -> None:
-    await interaction.response.defer()  # Defer a interação para indicar que estamos processando
+# Definir o comando de barra para vagas de desenvolvedor
+@app_commands.command(name="jobs", description="Procura por vagas de desenvolvedor no Brasil.")
+@app_commands.describe(job="Especifique o tipo de desenvolvedor (ex: Python, JavaScript)")
+async def jobs(interaction: discord.Interaction, job: str) -> None:
+    await buscar_vagas(interaction, 'Desenvolvedor', job)
 
-    query = f'Estágio em {estagio} no Brasil'
-    page = random.randint(1, 2)
-    num_pages = random.randint(1, 2)
-    date_posted = 'month'
-    remote_only = 'True'
-    employment_types = 'fulltime, parttime, intern, contractor'
 
-    try:
-        embeds = await obter_vagas(query, page, num_pages, date_posted, remote_only, employment_types)
-
-        if embeds:
-            for embed in embeds:
-                await interaction.followup.send(embed=embed)
-        else:
-            await interaction.followup.send("Não foram encontradas vagas.")
-    except Exception as e:
-        await interaction.followup.send(f"Ocorreu um erro ao obter as vagas: {e}")
+# Definir o comando de barra para vagas de estágio
+@app_commands.command(name="estagio", description="Procura por vagas de estagio no Brasil.")
+@app_commands.describe(job="Especifique o tipo de estágio (ex: Python, JavaScript)")
+async def estagio(interaction: discord.Interaction, job: str) -> None:
+    await buscar_vagas(interaction, 'Estágio', job)
 
 
 # Executar o bot
