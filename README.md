@@ -16,6 +16,6 @@ Um bot do Discord que envia vagas na área de tecnologia através de comandos. O
    pip install httpx
    ```
 # Comandos
-Com o bot configurado basta digitar ```/jobs ou /estagio (o nome da vaga que deseja)``` no chat do discord sem os parenteses, que ira aparecer um conjunto de vagas.
+Com o bot configurado basta digitar ```/jobs ou /estagio (o nome da vaga que deseja)``` no chat do discord sem os parênteses, que ira aparecer um conjunto de vagas.
 > [!NOTE]
 > O bot ainda está na sua primeira versão, novas features ainda serão adicionadas em breve para otimização e novas funcionalidades.
